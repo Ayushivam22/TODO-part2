@@ -9,13 +9,15 @@ const Signin = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleSignin = async () => {
+    console.log("handler reached");
     setError("");
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}user/signin`, {
+      console.log("Making post request");
+      const res = await axios.post(`http://localhost:8000/user/signin`, {
         username,
         password,
       });
-
+      console.log("Response from server:", res);
       if (res.data?.token) {
         localStorage.setItem("token", res.data.token);
         setIsAuthenticated(true);
@@ -35,10 +37,6 @@ const Signin = ({ setIsAuthenticated }) => {
         } else {
           setError(message);
         }
-      } else if (err.request) {
-        setError("No response from server. Please try again later.");
-      } else {
-        setError("Error setting up request.");
       }
 
       console.error("Signin error:", err);

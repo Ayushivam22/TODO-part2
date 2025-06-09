@@ -30,7 +30,7 @@ export const signupController = async function (req, res) {
         });
     }
     //hash the password
-    const hashedPassword = await bcrypt.hash(toString(password), 10); // 10 is salt rounds
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 is salt rounds
     await User.create({ username, password: hashedPassword });
 
     console.log("User created Successfully");
@@ -51,7 +51,7 @@ export const signinController = async function (req, res) {
     }
 
     // Compare password with hashed password
-    const isPasswordValid = await bcrypt.compare(toString(password), user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
         return res.status(400).json({

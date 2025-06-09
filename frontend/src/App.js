@@ -149,6 +149,7 @@ const App = () => {
       localStorage.removeItem("token");
       setIsAuthenticated(false);
       setTasks([]); // Clear tasks if needed
+      navigate("/user/signin");
     }}>
       Sign Out
     </button>
