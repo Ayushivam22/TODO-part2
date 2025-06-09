@@ -18,9 +18,9 @@ const corsOptions = {
   credentials: true,
 };
 // Handle preflight OPTIONS request for all routes
+app.use(cors(corsOptions));     
 app.options("*", cors(corsOptions)); // Explicitly enable OPTIONS method
 
-app.use(cors(corsOptions));     
 
 
 dbConnect();
