@@ -16,12 +16,13 @@ app.use(express.json());
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "token"]  // <-- include 'token'
 };
-// Handle preflight OPTIONS request for all routes
-app.use(cors(corsOptions));     
-app.options("*", cors(corsOptions)); // Explicitly enable OPTIONS method
 
-
+// Use it before your routes
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // <-- this handles preflight
 
 dbConnect();
 console.log("Routes are imported");
