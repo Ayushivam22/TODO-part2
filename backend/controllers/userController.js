@@ -30,7 +30,7 @@ export const signupController = async function (req, res) {
         });
     }
     //hash the password
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 is salt rounds
+    const hashedPassword = await bcrypt.hash(toString(password), 10); // 10 is salt rounds
     await User.create({ username, password: hashedPassword });
 
     console.log("User created Successfully");

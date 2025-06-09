@@ -26,7 +26,10 @@ console.log("Routes are imported");
 app.use("/task", auth, taskRoutes);
 app.use("/user", userRoutes);
 
-const Port = process.env.PORT || 3000;
-app.listen(Port, () => {
-  console.log(`Server is running on port ${Port}`);
-});
+// const Port = process.env.PORT || 3000;
+// app.listen(Port, () => {
+//   console.log(`Server is running on port ${Port}`);
+// });
+
+
+export default app; 
