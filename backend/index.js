@@ -18,7 +18,12 @@ const allowedOrigins = [
   "https://task-management-git-main-ayushivam22s-projects.vercel.app"         // another allowed domain (optional)
 ];
 
-app.use(cors());
+// Add this
+app.use(cors({
+  origin: "http://localhost:3000", // or use '*' in dev for all origins
+  credentials: true               // if you're using cookies/auth headers
+}));
+
 
 
 dbConnect();
