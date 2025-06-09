@@ -13,26 +13,19 @@ dotenv.config();
 app.use(express.json());
 
 // Add this
-const corsOptions = {
+app.use(cors({
   origin: "http://localhost:3000",
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "token"]  // <-- include 'token'
-};
-
-// Use it before your routes
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // <-- this handles preflight
-
+}));
 dbConnect();
 console.log("Routes are imported");
 app.use("/task", auth, taskRoutes);
 app.use("/user", userRoutes);
 
-// const Port = process.env.PORT || 3000;
-// app.listen(Port, () => {
-//   console.log(`Server is running on port ${Port}`);
-// });
+const Port = process.env.PORT || 3000;
+app.listen(Port, () => {
+  console.log(`Server is running on port ${Port}`);
+});
 
 
 export default app; 
