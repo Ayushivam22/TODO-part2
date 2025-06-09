@@ -12,18 +12,15 @@ dotenv.config();
 // Middleware for parsing JSON request bodies
 app.use(express.json());
 
-const allowedOrigins = [
-  "https://task-management-tawny-beta.vercel.app",                      // local dev
-  "https://task-management-ayushivam22s-projects.vercel.app", // production frontend
-  "https://task-management-git-main-ayushivam22s-projects.vercel.app"         // another allowed domain (optional)
-];
-
 // Add this
-app.use(cors({
-  origin: "http://localhost:3000", // or use '*' in dev for all origins
-  credentials: true               // if you're using cookies/auth headers
-}));
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+// Handle preflight OPTIONS request for all routes
+app.options("*", cors(corsOptions)); // Explicitly enable OPTIONS method
 
+app.use(cors(corsOptions));     
 
 
 dbConnect();
