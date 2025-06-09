@@ -51,7 +51,7 @@ export const signinController = async function (req, res) {
     }
 
     // Compare password with hashed password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(toString(password), user.password);
 
     if (!isPasswordValid) {
         return res.status(400).json({
